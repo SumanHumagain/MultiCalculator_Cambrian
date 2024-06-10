@@ -63,6 +63,14 @@ fun CalcView() {
             CalcDisplay(display = displayText)
         }
 
+        Row {
+            Column {
+                CalcOperationButton(operation = "+", display = displayText)
+                CalcOperationButton(operation = "-", display = displayText)
+                CalcOperationButton(operation = "*", display = displayText)
+                CalcOperationButton(operation = "/", display = displayText)
+            }
+        }
     }
 }
 
