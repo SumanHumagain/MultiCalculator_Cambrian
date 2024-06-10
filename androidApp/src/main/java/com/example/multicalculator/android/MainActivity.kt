@@ -3,6 +3,8 @@ package com.example.multicalculator.android
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -14,6 +16,7 @@ import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.multicalculator.Greeting
@@ -48,20 +51,36 @@ fun DefaultPreview() {
 }
 
 @Composable
-fun CalcView(){
+fun CalcView() {
+    val displayText = remember { mutableStateOf("0") }
 
+    Column(
+        modifier = Modifier
+            .background(Color.LightGray)
+            .padding(16.dp)
+    ) {
+        Row {
+            CalcDisplay(display = displayText)
+        }
+
+    }
 }
+
+
 
 @Composable
 fun CalcRow(display: MutableState<String>, startNum: Int, numButtons: Int) {
     val endNum = startNum + numButtons
 
-    Row {
+    Row(
+        modifier = Modifier.padding(0.dp)
+    ) {
         for (i in startNum until endNum) {
             CalcNumericButton(number = i, display = display)
         }
     }
 }
+
 
 
 
