@@ -4,6 +4,8 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.background
+import androidx.compose.foundation.border
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
@@ -46,7 +48,13 @@ fun CalcView() {
             .background(Color.LightGray).padding(30.dp)
     ) {
         Row {
-            CalcDisplay(display = displayText)
+            Box(
+                modifier = Modifier
+                    .border(1.dp, Color.Black)
+                    .padding(4.dp)
+            ) {
+                CalcDisplay(display = displayText)
+            }
         }
 
         Row {
