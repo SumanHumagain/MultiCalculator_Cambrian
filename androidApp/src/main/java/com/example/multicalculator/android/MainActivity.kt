@@ -32,7 +32,7 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    CalcView()
+                    CalcView() //call calculator view
                 }
             }
         }
@@ -53,21 +53,21 @@ fun CalcView() {
                     .border(1.dp, Color.Black)
                     .padding(4.dp)
             ) {
-                CalcDisplay(display = displayText)
+                CalcDisplay(display = displayText) // Display seciton of calculator
             }
         }
 
         Row {
             Column {
                 for (i in 7 downTo 1 step 3) {
-                    CalcRow(display = displayText, startNum = i, numButtons = 3)
+                    CalcRow(display = displayText, i, numButtons = 3)
                 }
                 Row {
-                    CalcNumericButton(number = 0, display = displayText)
-                    CalcEqualsButton(display = displayText)
+                    CalcNumericButton(number = 0, display = displayText) //It create numeric buttons
+                    CalcEqualsButton(display = displayText) // Creates equal button
                     }
             }
-            Column {
+            Column {//Create 4 operators
                 CalcOperationButton(operation = "+", display = displayText)
                 CalcOperationButton(operation = "-", display = displayText)
                 CalcOperationButton(operation = "*", display = displayText)
@@ -93,9 +93,6 @@ fun CalcRow(display: MutableState<String>, startNum: Int, numButtons: Int) {
     }
 }
 
-
-
-
 @Composable
 fun CalcDisplay(display: MutableState<String>) {
     Text(
@@ -112,7 +109,6 @@ fun CalcDisplay(display: MutableState<String>) {
 fun CalcNumericButton(number: Int, display: MutableState<String>) {
     Button(
         onClick = {
-            // Append the number to the display value
             display.value += number.toString()
         },
         modifier = Modifier.padding(4.dp)
@@ -126,7 +122,7 @@ fun CalcNumericButton(number: Int, display: MutableState<String>) {
 fun CalcOperationButton(operation: String, display: MutableState<String>) {
     Button(
         onClick = {
-            // Logic to handle the operation and update the display
+            // Logic to update the display text
             display.value += operation
         },
         modifier = Modifier.padding(4.dp)
