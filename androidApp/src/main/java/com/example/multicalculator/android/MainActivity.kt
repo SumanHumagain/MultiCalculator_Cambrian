@@ -30,7 +30,6 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-//                    GreetingView(Greeting().greet())
                     CalcView()
                 }
             }
@@ -38,27 +37,13 @@ class MainActivity : ComponentActivity() {
     }
 }
 
-//@Composable
-//fun GreetingView(text: String) {
-//    Text(text = text)
-//}
-
-//@Preview
-//@Composable
-//fun DefaultPreview() {
-//    MyApplicationTheme {
-//        GreetingView("Hello, Android!")
-//    }
-//}
-
 @Composable
 fun CalcView() {
     val displayText = remember { mutableStateOf("0") }
 
     Column(
         modifier = Modifier
-            .background(Color.LightGray)
-            .padding(16.dp)
+            .background(Color.LightGray).padding(16.dp)
     ) {
         Row {
             CalcDisplay(display = displayText)
@@ -68,10 +53,10 @@ fun CalcView() {
             Column {
                 for (i in 7 downTo 1 step 3) {
                     CalcRow(display = displayText, startNum = i, numButtons = 3)
+                }
                 Row {
                     CalcNumericButton(number = 0, display = displayText)
                     CalcEqualsButton(display = displayText)
-                }
                     }
             }
             Column {
