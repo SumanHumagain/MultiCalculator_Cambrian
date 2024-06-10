@@ -55,20 +55,45 @@ fun CalcRow(){
 }
 
 @Composable
-fun CalcDisplay(){
-
+fun CalcDisplay(display: MutableState<String>) {
+    Text(text = display.value)
 }
 
-@Composable
-fun CalcNumericButton(){
 
+@Composable
+fun CalcNumericButton(number: Int, display: MutableState<String>) {
+    Button(
+        onClick = {
+            // Append the number to the display value
+            display.value += number.toString()
+        },
+        modifier = Modifier.padding(4.dp)
+    ) {
+        Text(text = number.toString())
+    }
 }
 
-@Composable
-fun CalcOperationButton() {
 
+@Composable
+fun CalcOperationButton(operation: String, display: MutableState<String>) {
+    Button(
+        onClick = {
+            // Logic to handle the operation and update the display
+            display.value += operation
+        },
+        modifier = Modifier.padding(4.dp)
+    ) {
+        Text(text = operation)
+    }
 }
 @Composable
-fun CalcEqualsButton(){
-
+fun CalcEqualsButton(display: MutableState<String>){
+    Button(
+        onClick = {
+            display.value = "0"
+        },
+        modifier = Modifier.padding(4.dp)
+    ) {
+        Text(text = "=")
+    }
 }
