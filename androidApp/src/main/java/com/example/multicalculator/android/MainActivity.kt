@@ -43,7 +43,7 @@ fun CalcView() {
 
     Column(
         modifier = Modifier
-            .background(Color.LightGray).padding(16.dp)
+            .background(Color.LightGray).padding(30.dp)
     ) {
         Row {
             CalcDisplay(display = displayText)
