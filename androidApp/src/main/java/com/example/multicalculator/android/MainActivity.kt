@@ -17,6 +17,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
@@ -42,6 +43,11 @@ class MainActivity : ComponentActivity() {
 @Composable
 fun CalcView() {
     val displayText = remember { mutableStateOf("0") }
+    var leftNumber = rememberSaveable { 0 }
+    var rightNumber = rememberSaveable { 0 }
+    var operation = rememberSaveable { "" }
+    var complete = rememberSaveable { false }
+
 
     Column(
         modifier = Modifier
@@ -130,6 +136,7 @@ fun CalcOperationButton(operation: String, display: MutableState<String>) {
         Text(text = operation)
     }
 }
+
 @Composable
 fun CalcEqualsButton(display: MutableState<String>){
     Button(
