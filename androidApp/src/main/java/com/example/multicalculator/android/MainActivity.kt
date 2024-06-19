@@ -93,7 +93,8 @@ fun CalcView() {
 
     Column(
         modifier = Modifier
-            .background(Color.LightGray).padding(30.dp)
+            .background(Color.LightGray)
+            .padding(30.dp)
     ) {
         Row {
             Box(
@@ -108,18 +109,18 @@ fun CalcView() {
         Row {
             Column {
                 for (i in 7 downTo 1 step 3) {
-                    CalcRow(display = displayText, i, numButtons = 3)
+                    CalcRow(onPress = { number -> numberPress(number) }, i, numButtons = 3)
                 }
                 Row {
-                    CalcNumericButton(number = 0, display = displayText) //It create numeric buttons
-                    CalcEqualsButton(display = displayText) // Creates equal button
+                    CalcNumericButton(number = 0, onPress = { number -> numberPress(number) })
+                    CalcEqualsButton(onPress = {equalsPress()})
                     }
             }
-            Column {//Create 4 operators
-                CalcOperationButton(operation = "+", display = displayText)
-                CalcOperationButton(operation = "-", display = displayText)
-                CalcOperationButton(operation = "*", display = displayText)
-                CalcOperationButton(operation = "/", display = displayText)
+            Column {
+                CalcOperationButton(operation = "+", onPress = { op -> operationPress(op) })
+                CalcOperationButton(operation = "-", onPress = { op -> operationPress(op) })
+                CalcOperationButton(operation = "*", onPress = { op -> operationPress(op) })
+                CalcOperationButton(operation = "/", onPress = { op -> operationPress(op) })
             }
         }
     }
