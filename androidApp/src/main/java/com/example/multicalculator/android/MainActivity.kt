@@ -74,6 +74,11 @@ fun CalcView() {
             operation = ""
             complete = false
         }
+        if (operation.isNotBlank() && !complete) {
+            rightNumber = rightNumber * 10 + btnNum
+        } else if (operation.isBlank() && !complete) {
+            leftNumber = leftNumber * 10 + btnNum
+        }
     }
 
     fun operationPress(op: String) {
@@ -124,14 +129,14 @@ fun CalcView() {
 
 
 @Composable
-fun CalcRow(display: MutableState<String>, startNum: Int, numButtons: Int) {
+fun CalcRow(onPress: (number: Int) -> Unit, startNum: Int, numButtons: Int) {
     val endNum = startNum + numButtons
 
     Row(
         modifier = Modifier.padding(0.dp)
     ) {
         for (i in startNum until endNum) {
-            CalcNumericButton(number = i, display = display)
+            CalcNumericButton(number = i, onPress = onPress)
         }
     }
 }
@@ -149,10 +154,10 @@ fun CalcDisplay(display: MutableState<String>) {
 
 
 @Composable
-fun CalcNumericButton(number: Int, display: MutableState<String>) {
+fun CalcNumericButton(number: Int, onPress: (number: Int) -> Unit) {
     Button(
         onClick = {
-            display.value += number.toString()
+            onPress(number)
         },
         modifier = Modifier.padding(4.dp)
     ) {
@@ -162,11 +167,10 @@ fun CalcNumericButton(number: Int, display: MutableState<String>) {
 
 
 @Composable
-fun CalcOperationButton(operation: String, display: MutableState<String>) {
+fun CalcOperationButton(operation: String, onPress: (operation: String) -> Unit) {
     Button(
         onClick = {
-            // Logic to update the display text
-            display.value += operation
+            onPress(operation)
         },
         modifier = Modifier.padding(4.dp)
     ) {
@@ -175,10 +179,10 @@ fun CalcOperationButton(operation: String, display: MutableState<String>) {
 }
 
 @Composable
-fun CalcEqualsButton(display: MutableState<String>){
+fun CalcEqualsButton(onPress: () -> Unit){
     Button(
         onClick = {
-            display.value = "0"
+            onPress
         },
         modifier = Modifier.padding(4.dp)
     ) {
